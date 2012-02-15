@@ -111,6 +111,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- lock screen
     , ((controlMask .|. shiftMask, xK_l), spawn "gnome-screensaver-command -l")
     , ((modm .|. shiftMask, xK_l), spawn "gnome-screensaver-command -l")
+    -- suspend and lock screen
+    , ((controlMask .|. shiftMask .|. modm, xK_l), spawn "gnome-screensaver-command -l & sudo pm-suspend")
     -- floating layer support
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink) -- %! Push window back into tiling
     ]
