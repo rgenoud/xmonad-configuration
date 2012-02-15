@@ -115,6 +115,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((controlMask .|. shiftMask .|. modm, xK_l), spawn "gnome-screensaver-command -l & sudo pm-suspend")
     -- floating layer support
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink) -- %! Push window back into tiling
+    -- launch proxied chromium 
+    , ((controlMask .|. shiftMask .|. modm, xK_w), spawn "chromium-browser --proxy-server=\"socks5://127.0.0.1:8080\"")
     ]
     ++
     -- switch workspaces azerty
