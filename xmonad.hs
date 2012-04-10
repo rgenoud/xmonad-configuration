@@ -116,7 +116,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- floating layer support
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink) -- %! Push window back into tiling
     -- launch proxied chromium 
-    , ((shiftMask .|. modm, xK_w), spawn "chromium-browser --proxy-server=\"socks5://127.0.0.1:8080\"")
+    , ((shiftMask .|. modm, xK_w), spawn "chromium --proxy-server=\"socks5://127.0.0.1:8080\"")
     -- launch incognito chromium 
     , ((controlMask .|. modm, xK_w), spawn "chromium --incognito")
     -- Print screen
