@@ -25,8 +25,8 @@ startup :: X ()
 startup = do
     spawn "pidof firefox-bin || iceweasel"
     spawn "pidof pidgin || pidgin"
-    -- spawn "pidof gnome-panel || gnome-panel"
     spawn "pidof nm-applet || nm-applet"
+    spawn "pidof gnome-sound-applet || gnome-sound-applet"
     spawn "dontlaunch=0; for i in `pidof perl` ; do grep -q checkgmail /proc/$i/cmdline && dontlaunch=1; done; test $dontlaunch -eq 0 && checkgmail -no_cookies"
     spawn "pidof kerneloops-applet || kerneloops-applet"
     spawn "pidof update-notifier || update-notifier"
@@ -117,6 +117,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_t), withFocused $ windows . W.sink) -- %! Push window back into tiling
     -- launch proxied chromium 
     , ((shiftMask .|. modm, xK_w), spawn "chromium-browser --proxy-server=\"socks5://127.0.0.1:8080\"")
+    -- launch incognito chromium 
+    , ((controlMask .|. modm, xK_w), spawn "chromium --incognito")
+    -- Print screen
+    , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
+    , ((0, xK_Print), spawn "scrot")
     ]
     ++
     -- switch workspaces azerty
