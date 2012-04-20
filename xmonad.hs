@@ -33,9 +33,10 @@ startup = do
     spawn "pidof gnome-screensaver || gnome-screensaver"
     spawn "dontlaunch=0; for i in `pidof python` ; do grep -q system-config-printer-applet /proc/$i/cmdline && dontlaunch=1; done; test $dontlaunch -eq 0 && system-config-printer-applet"
     spawn "pidof trayer || trayer --edge top --align right --widthtype percent --width 10 --height 17 --tint 0 --transparent true --alpha 1 --SetDockType true"
-    --spawn "pidof xautolock || xautolock -time 60 -locker \"sudo pm-suspend\""
+    spawn "pidof xautolock || xautolock -time 90 -locker \"gnome-screensaver-command -l & sudo pm-suspend\""
     spawn "pidof mount-tray || mount-tray"
     spawn "dontlaunch=0; for i in `pidof python` ; do grep -q pidgin_evt_dump.py /proc/$i/cmdline && dontlaunch=1; done; test $dontlaunch -eq 0 && pidgin_evt_dump.py | xmobar /home/$USER/.xmonad/xmobar-bottom"
+    spawn "xset dpms 300 600 900"
 -- to test : runOrRaise "chromium" (className =? "Chromium")
 
 myWorkspaces = map show [1 .. 12 :: Int]
