@@ -39,7 +39,7 @@ startup = do
     spawn "xset dpms 300 600 900"
 -- to test : runOrRaise "chromium" (className =? "Chromium")
 
-myWorkspaces = map show [1 .. 12 :: Int]
+myWorkspaces = map show [0 .. 12 :: Int]
  
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
@@ -126,11 +126,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ]
     ++
     -- switch workspaces azerty
-    -- mod-[1..9] @@ Switch to workspace N
-    -- mod-shift-[1..9] @@ Move client to workspace N
+    -- mod-[²..=] @@ Switch to workspace N
+    -- mod-shift-[²..=] @@ Move client to workspace N
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf)
-            [ xK_ampersand, xK_eacute, xK_quotedbl, xK_apostrophe, xK_parenleft, xK_minus
+            [ xK_twosuperior, xK_ampersand, xK_eacute, xK_quotedbl, xK_apostrophe, xK_parenleft, xK_minus
              , xK_egrave, xK_underscore, xK_ccedilla, xK_agrave, xK_parenright, xK_equal ]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
     ]
