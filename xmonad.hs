@@ -120,8 +120,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((shiftMask .|. modm, xK_w), spawn "chromium --proxy-server=\"socks5://127.0.0.1:8080\"")
     -- launch incognito chromium 
     , ((controlMask .|. modm, xK_w), spawn "chromium --incognito")
-    -- Print screen
+    -- Print screen (select area)
     , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
+    -- Print screen (selected window)
+    , ((shiftMask , xK_Print), spawn "scrot -u")
+    -- Print screen
     , ((0, xK_Print), spawn "scrot")
     ]
     ++
